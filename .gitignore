@@ -1,0 +1,26 @@
+# WorkBuddy local runtime, sessions, Automation state, and backups
+.workbuddy/
+
+# User-specific ima configuration and incremental state
+config/*.local.json
+.local/
+
+# Generated packages and reports
+dist/
+
+# Obsidian local workspace state and cache
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/workspaces.json
+.obsidian/cache/
+
+# Python and test cache
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Operating-system and temporary files
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak

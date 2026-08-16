@@ -1,0 +1,9 @@
+{
+  "knowledge_base_name": "<填写自己的 ima 知识库名称>",
+  "topic": "ai-knowledge",
+  "timezone": "Asia/Shanghai",
+  "schedule_hint": "每周一次，首次验证后再启用",
+  "update_markers": ["更新", "updated"],
+  "copyright_mode": "metadata-and-summary",
+  "max_items_per_run": 20
+}
