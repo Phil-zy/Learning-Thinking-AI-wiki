@@ -4,6 +4,7 @@ param()
 $ErrorActionPreference = 'Stop'
 $ProjectRoot = Split-Path -Parent $PSScriptRoot
 $SkillRoot = Join-Path $ProjectRoot '.agents/skills/ai-learning-llm-wiki'
+$ThinkingSkillRoot = Join-Path $ProjectRoot '.agents/skills/ai-thinking-writing'
 
 Push-Location $ProjectRoot
 try {
@@ -24,6 +25,12 @@ try {
 
     & $python @prefix -m unittest discover -s "$SkillRoot/tests" -p 'test_*.py' -v
     if ($LASTEXITCODE -ne 0) { throw 'Skill tests failed.' }
+
+    & $python @prefix "$ThinkingSkillRoot/scripts/check_publication.py" $ProjectRoot
+    if ($LASTEXITCODE -ne 0) { throw 'Publication readiness check failed.' }
+
+    & $python @prefix -m unittest discover -s "$ThinkingSkillRoot/tests" -p 'test_*.py' -v
+    if ($LASTEXITCODE -ne 0) { throw 'Thinking and writing skill tests failed.' }
 
     $forbidden = @(
         'automation-[0-9]{10,}',

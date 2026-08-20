@@ -2,7 +2,7 @@
 
 ## 内容
 
-- [ ] `wiki/`、`raw/`、`reviews/` 中没有私人内容。
+- [ ] `wiki/`、`raw/`、`reviews/`、`inbox/`、`notes/`、`topics/`、`content/` 中没有真实或私人内容。
 - [ ] 示例内容完全虚构或拥有公开授权。
 - [ ] 没有真实知识库名称、ID、`media_id`、Automation ID 或时间基准。
 - [ ] 没有个人绝对路径、账号、邮箱、Token、Cookie、API Key 或私钥。
@@ -10,10 +10,12 @@
 ## 功能
 
 - [ ] `scripts/initialize.ps1` 可重复运行。
-- [ ] `scripts/package-skill.ps1` 能生成 Skill ZIP。
+- [ ] `scripts/package-skill.ps1` 能生成两个 Skill ZIP。
 - [ ] `scripts/verify.ps1` 全部通过。
-- [ ] WorkBuddy 能导入生成的 Skill ZIP。
+- [ ] WorkBuddy 能导入 `ai-learning-llm-wiki.zip` 和 `ai-thinking-writing.zip`。
 - [ ] 用户已人工验证 ima 连接、首次摄取、增量去重和批准合并。
+- [ ] 已人工验证“记录想法”不会自动生成候选笔记或文章。
+- [ ] 发布准备门禁不会被误解为外部发布授权。
 - [ ] Automation 文档明确说明需要手工创建，未宣称支持导入内部备份。
 
 ## GitHub

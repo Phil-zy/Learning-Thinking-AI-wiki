@@ -1,11 +1,13 @@
 ---
 name: ai-learning-llm-wiki
-description: "Build and maintain an AI-learning LLM wiki, including staged source ingest, review and approval, evidence linting, querying, archiving, and incremental ingestion from an authorized ima knowledge base in WorkBuddy. Use for requests such as 'add to wiki', 'import from ima', 'set up ima ingestion', 'what do I know about', '导入知识库', '从 ima 摄取', '批量导入', and '检查知识库'."
+description: "Build and maintain the template's external-source AI-learning wiki, including staged source ingest, review and approval, evidence linting, querying, archiving, and incremental ingestion from an authorized ima knowledge base in WorkBuddy. Use for requests such as 'add to wiki', 'import from ima', 'set up ima ingestion', 'what do I know about', '导入知识库', '从 ima 摄取', '批量导入', and '检查知识库'. Do not use it to mature personal thoughts or write public articles; use ai-thinking-writing for that."
 ---
 
 # AI Learning LLM Wiki
 
 Build and maintain a personal knowledge base using LLMs. You manage `raw/` (immutable source material), `staging/` (review drafts), `reviews/` (batch review reports), and `wiki/` (approved knowledge articles). Sources go into raw/, compilation defaults to staging/, and only user-approved changes enter wiki/.
+
+This Skill owns the external-knowledge pipeline. Personal experiences, viewpoints, content seeds, drafts, and publication versions belong to `ai-thinking-writing`; do not create or upgrade them as a side effect of Ingest or Query.
 
 Core ideas from Karpathy:
 - "The LLM writes and maintains the wiki; the human reads and asks questions."

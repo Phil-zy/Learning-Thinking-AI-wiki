@@ -1,0 +1,7 @@
+interface:
+  display_name: "AI Thinking and Writing"
+  short_description: "Develop personal insights into publishable writing"
+  default_prompt: "Use $ai-thinking-writing to help me clarify one AI-use experience without turning it into an article too early."
+
+policy:
+  allow_implicit_invocation: true
