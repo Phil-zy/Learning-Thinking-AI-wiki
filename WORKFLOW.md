@@ -20,7 +20,7 @@
 来源获取 → Raw → 分类 → Staging → 批次审核 → 用户批准 → Wiki → Lint
 ```
 
-ima 增量摄取的连接器、配置和故障恢复规则见该 Skill 的 `references/ima-ingest.md`。普通摄取不自动创建个人观点或文章。
+来源可以由用户粘贴、网页或文件工具、浏览器、API 或授权连接器提供。平台专用的连接器发现、配置、增量状态和调度规则属于 `integrations/` 下的可选 Adapter；取得来源内容后统一进入 Raw、Staging 和审核门禁。外部知识摄取不自动创建个人观点或文章。
 
 ## 个人思考管线
 
@@ -49,7 +49,7 @@ content/seeds/ → content/series/ → content/drafts/
 ## 常用请求路由
 
 ```text
-导入文章、从 ima 摄取、查询 Wiki、检查 Wiki
+导入网页或文档、摄取外部来源、查询 Wiki、检查 Wiki
 → ai-learning-llm-wiki
 
 记录想法、讨论感受、形成观点、规划文章、准备发布

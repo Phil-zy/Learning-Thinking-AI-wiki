@@ -32,6 +32,18 @@ try {
     & $python @prefix -m unittest discover -s "$ThinkingSkillRoot/tests" -p 'test_*.py' -v
     if ($LASTEXITCODE -ne 0) { throw 'Thinking and writing skill tests failed.' }
 
+    $coreIndependentFiles = @(
+        (Join-Path $SkillRoot 'SKILL.md'),
+        (Join-Path $SkillRoot 'agents/openai.yaml'),
+        (Join-Path $ProjectRoot 'scripts/initialize.ps1')
+    )
+    foreach ($file in $coreIndependentFiles) {
+        $content = Get-Content -Raw -Encoding UTF8 -LiteralPath $file
+        if ($content -match '(?i)WorkBuddy|\bima\b') {
+            throw "Core file depends on the optional WorkBuddy/ima adapter: $file"
+        }
+    }
+
     $forbidden = @(
         'automation-[0-9]{10,}',
         'Bearer\s+[A-Za-z0-9._-]{20,}',
@@ -47,7 +59,7 @@ try {
         $_.FullName -notmatch '[\\/]dist[\\/]' -and
         $_.FullName -notmatch '[\\/]__pycache__[\\/]' -and
         $_.FullName -ne $PSCommandPath -and
-        $_.Name -ne 'ima-ingest.local.json'
+        $_.Name -notmatch '\.local\.json$'
     }
     foreach ($file in $scanFiles) {
         $content = Get-Content -Raw -Encoding UTF8 -ErrorAction SilentlyContinue $file.FullName

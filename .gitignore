@@ -1,8 +1,8 @@
-# WorkBuddy local runtime, sessions, Automation state, and backups
+# Agent-specific local runtime, sessions, and caches
 .workbuddy/
 
-# User-specific ima configuration and incremental state
-config/*.local.json
+# Local integration configuration and incremental state
+*.local.json
 .local/
 
 # Generated packages and reports

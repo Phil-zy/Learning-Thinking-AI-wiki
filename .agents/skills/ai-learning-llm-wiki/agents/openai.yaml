@@ -1,7 +1,7 @@
 interface:
   display_name: "AI Learning LLM Wiki"
   short_description: "Ingest, review, and maintain an AI learning wiki"
-  default_prompt: "Use $ai-learning-llm-wiki to ingest authorized ima sources into a staged AI wiki review batch."
+  default_prompt: "Use $ai-learning-llm-wiki to ingest an authorized webpage or document into a staged AI wiki review batch."
 
 policy:
   allow_implicit_invocation: true

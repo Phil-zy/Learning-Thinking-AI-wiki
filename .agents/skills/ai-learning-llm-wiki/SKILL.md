@@ -1,6 +1,6 @@
 ---
 name: ai-learning-llm-wiki
-description: "Build and maintain the template's external-source AI-learning wiki, including staged source ingest, review and approval, evidence linting, querying, archiving, and incremental ingestion from an authorized ima knowledge base in WorkBuddy. Use for requests such as 'add to wiki', 'import from ima', 'set up ima ingestion', 'what do I know about', '导入知识库', '从 ima 摄取', '批量导入', and '检查知识库'. Do not use it to mature personal thoughts or write public articles; use ai-thinking-writing for that."
+description: "Build and maintain the template's external-source AI-learning wiki, including staged ingest from webpages, documents, pasted text, or authorized connectors; review and approval; evidence linting; querying; and archiving. Use for requests such as 'add to wiki', 'ingest this webpage', 'import this document', 'what do I know about', '导入知识库', '摄取这个网页', '批量导入', and '检查知识库'. Do not use it to mature personal thoughts or write public articles; use ai-thinking-writing for that."
 ---
 
 # AI Learning LLM Wiki
@@ -56,7 +56,7 @@ Every load-bearing fact in wiki/ — numbers, dates, direct quotes — exists ve
 
 Fetch a source into raw/, then compile it into staging/ — unless the source adds nothing new. Always fetch; whether to compile depends on the triage below. Do not modify formal wiki/ pages until the user explicitly approves a merge.
 
-When the source is an ima knowledge base, read `references/ima-ingest.md` before fetching. Use it for connector discovery, local configuration, incremental state, update detection, copyright handling, and failure recovery. WorkBuddy Automation must stop after creating Raw, staging drafts, and the batch report; it must never approve or merge a batch by itself.
+Sources may arrive as user-pasted text, webpages, local documents, browser output, APIs, or authorized connectors. Use whichever source-access tool is available and authorized. Platform-specific connector discovery, pagination, incremental state, scheduling, and recovery belong to optional Adapter instructions under the project root's `integrations/` directory. Read an Adapter only when the user chooses it. After acquisition, every Adapter must return to this Skill's Fetch, Triage, Compile, and approval workflow; it cannot bypass review or merge a batch by itself.
 
 ### Fetch (raw/)
 

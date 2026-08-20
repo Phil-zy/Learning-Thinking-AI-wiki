@@ -4,20 +4,11 @@ param()
 $ErrorActionPreference = 'Stop'
 $ProjectRoot = Split-Path -Parent $PSScriptRoot
 
-foreach ($relative in @('raw', 'staging', 'reviews', 'wiki', '.local')) {
+foreach ($relative in @('raw', 'staging', 'reviews', 'wiki')) {
     $path = Join-Path $ProjectRoot $relative
     if (-not (Test-Path -LiteralPath $path)) {
         New-Item -ItemType Directory -Path $path | Out-Null
     }
-}
-
-$localConfig = Join-Path $ProjectRoot 'config/ima-ingest.local.json'
-$exampleConfig = Join-Path $ProjectRoot 'config/ima-ingest.example.json'
-if (-not (Test-Path -LiteralPath $localConfig)) {
-    Copy-Item -LiteralPath $exampleConfig -Destination $localConfig
-    Write-Host 'Created config/ima-ingest.local.json. Fill in your own ima knowledge-base name.'
-} else {
-    Write-Host 'Local ima configuration already exists; left unchanged.'
 }
 
 if (Get-Command git -ErrorAction SilentlyContinue) {
@@ -34,4 +25,4 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
     }
 }
 
-Write-Host 'Initialization complete.'
+Write-Host 'Core workspace initialization complete. Optional integrations have separate setup instructions.'

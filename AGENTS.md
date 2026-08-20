@@ -1,10 +1,10 @@
 # AI Knowledge Studio Template：项目规则
 
-本仓库是可公开复用的 WorkBuddy + ima AI Knowledge Studio 模板。它提供外部知识摄取、个人思考沉淀和内容发布准备三段式工作流，但不包含任何真实知识、私人想法或账号配置。
+本仓库是可公开复用、与 Agent 平台和来源工具无关的 AI Knowledge Studio 模板。它提供外部知识摄取、个人思考沉淀和内容发布准备三段式工作流，但不包含任何真实知识、私人想法或账号配置。
 
 ## 工作流入口
 
-- `.agents/skills/ai-learning-llm-wiki/SKILL.md`：外部知识管线，负责 ima/网页/文档摄取、Raw、Staging、审核、Wiki、Query、Lint 和完成门禁。
+- `.agents/skills/ai-learning-llm-wiki/SKILL.md`：外部知识管线，负责网页、文档、用户粘贴或授权连接器来源的摄取、Raw、Staging、审核、Wiki、Query、Lint 和完成门禁。
 - `.agents/skills/ai-thinking-writing/SKILL.md`：个人思考与内容管线，负责想法捕获、对话澄清、观点确认、内容种子、写作、发布准备和发布归档。
 
 `PROJECT.md` 说明统一定位，`WORKFLOW.md` 说明两条管线如何汇合，`WRITING_GUIDE.md` 约束公开写作。处理任务前读取当前任务对应的 Skill；跨管线任务同时遵守两者，不得用其中一条绕过另一条的确认门槛。
@@ -21,11 +21,16 @@
 
 - 不写入或提交真实账号、Token、Cookie、API Key、知识库 ID、连接器内部 ID、Automation ID、联系方式、个人绝对路径或未授权对话。
 - 不提交真实 `raw/`、`wiki/`、`reviews/`、`inbox/`、`notes/`、`topics/` 或 `content/` 数据；模板目录只保留初始化文件或明确虚构的示例。
-- 用户本地配置只写入 `config/ima-ingest.local.json`；该文件必须保持忽略。
-- `.workbuddy/` 与 `.local/` 是本地运行状态，不纳入版本控制。
+- 用户本地配置使用 `*.local.json` 或可选 Adapter 明确规定的忽略路径，不纳入版本控制。
+- Agent、连接器与增量摄取的本地运行状态必须保存在 Git 忽略路径中。
 - 示例内容必须完全虚构或明确授权公开，不能从母库复制真实知识或个人素材。
-- WorkBuddy Automation 只摄取到 `raw/`、`staging/`、`reviews/`；未经用户批准，不写入正式 `wiki/`。
-- 不依赖 WorkBuddy 内部 Automation JSON 或 SQLite 数据库；这些不是公开稳定接口。
+
+## 可选 Adapter
+
+- 平台或来源专用流程放在 `integrations/<adapter>/`，不得成为核心 Skill、默认初始化或通用验证的运行前提。
+- Adapter 可以定义连接器发现、本地配置、增量状态、调度和失败恢复，但获取来源内容后必须回到 `ai-learning-llm-wiki` 的 Raw、Staging、审核和批准门禁。
+- Adapter 不得自动批准批次、绕过正式 Wiki 门禁、自动提交或推送 Git。
+- 修改某个 Adapter 时只读取并验证该目录的说明；未选择该 Adapter 的用户不需要安装其平台或连接器。
 
 ## 来源、观点与发布权限
 

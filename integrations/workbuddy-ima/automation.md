@@ -1,16 +1,18 @@
-# WorkBuddy Automation：ima 增量摄取
+# WorkBuddy Automation：ima 增量摄取（可选 Adapter）
 
 ## 当前兼容边界
 
 WorkBuddy 支持本地保存 Automation 和使用内置任务模板，但尚未验证用户自建 Automation 的公开导入/导出格式。本文件不是内部备份，不能直接导入 Automation；它提供可复制配置和 Prompt。
+
+本 Automation 只负责特定来源的获取与调度。取得来源后仍执行核心 `ai-learning-llm-wiki` 工作流，不改变核心仓库的通用 Interface。
 
 ## 创建前检查
 
 1. 将本仓库作为 WorkBuddy 工作空间。
 2. 导入或启用 `ai-learning-llm-wiki` Skill。
 3. 在连接器管理中连接并授权自己的 ima。
-4. 复制 `config/ima-ingest.example.json` 为 `config/ima-ingest.local.json`，填写知识库名称。
-5. 确认 `config/ima-ingest.local.json` 仍被 Git 忽略。
+4. 复制 `integrations/workbuddy-ima/config.example.json` 为 `integrations/workbuddy-ima/config.local.json`，填写知识库名称。
+5. 确认 `integrations/workbuddy-ima/config.local.json` 仍被 Git 忽略。
 
 ## 推荐 Automation 配置
 
@@ -33,8 +35,8 @@ WorkBuddy 支持本地保存 Automation 和使用内置任务模板，但尚未�
 使用 $ai-learning-llm-wiki 执行一次 ima 增量摄取。
 
 开始前：
-1. 将当前工作空间视为项目根目录，完整读取 AGENTS.md、Skill 的 SKILL.md，以及 Skill 直接引用的 ima-ingest.md。
-2. 读取 config/ima-ingest.local.json。若文件不存在、JSON 无效或 knowledge_base_name 仍是占位符，停止并报告；不要写入任何 Wiki 文件。
+1. 将当前工作空间视为项目根目录，完整读取 AGENTS.md、Skill 的 SKILL.md，以及 integrations/workbuddy-ima/ima-ingest.md。
+2. 读取 integrations/workbuddy-ima/config.local.json。若文件不存在、JSON 无效或 knowledge_base_name 仍是占位符，停止并报告；不要写入任何 Wiki 文件。
 3. 在当前已授权连接器中发现 ima 能力，不依赖固定 MCP 工具名。必须能完成：列出知识库、列出条目、获取单条内容。若任一能力不可用，停止并报告；不要写入任何 Wiki 文件。
 4. 仅访问配置指定的知识库。若同名知识库不是唯一匹配，停止并请用户选择。
 
